@@ -39,6 +39,7 @@ class Mystate extends State {
           title: Text('Simple Interest Calculator'),
         ),
         body: Form(
+
           key: _formkey,
           child: Padding(
             padding: EdgeInsets.all(10.0),
@@ -57,9 +58,11 @@ class Mystate extends State {
                       }
                     },
                     decoration: InputDecoration(
+                      //errorText: 'Please enter a valid number',
                       labelText: 'Principal',
                       hintText: 'In number eg.15000',
                       border: OutlineInputBorder(
+
                           borderRadius: BorderRadius.circular(5.0)),
                     ),
                   ),
@@ -69,10 +72,11 @@ class Mystate extends State {
                   child: TextFormField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+                        //errorText: 'Please enter a valid number',
                         hintText: 'In Percent',
                         labelText: 'Rate of Interest',
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0))),
+                            borderRadius: BorderRadius.circular(5.0),borderSide: BorderSide(color: Colors.indigo,style:BorderStyle.solid ))),
                     controller: roiController,
                     validator: (String value) {
                       if (value.isEmpty) {
@@ -89,6 +93,8 @@ class Mystate extends State {
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
+
+                                //errorText: 'Please enter a valid number',
                             hintText: 'In Years',
                             labelText: 'Term',
                             border: OutlineInputBorder(
