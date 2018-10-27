@@ -56,15 +56,13 @@ class Mystate extends State {
                       if (value.isEmpty) {
                         return "Please Enter a valid Number";
                       }
-                      else{
-                        return null;
-                      }
                     },
                     decoration: InputDecoration(
                       //errorText: 'Please enter a valid number',
                       labelText: 'Principal',
                       hintText: 'In number eg.15000',
                       border: OutlineInputBorder(
+
                           borderRadius: BorderRadius.circular(5.0)),
                     ),
                   ),
@@ -83,9 +81,6 @@ class Mystate extends State {
                     validator: (String value) {
                       if (value.isEmpty) {
                         return "Please Enter a valid amount";
-                      }
-                      else{
-                        return null;
                       }
                     },
                   ),
@@ -108,9 +103,6 @@ class Mystate extends State {
                         validator: (String value) {
                           if (value.isEmpty) {
                             return "Please Enter a valid amount";
-                          }
-                          else{
-                            return null;
                           }
                         },
                       )),
