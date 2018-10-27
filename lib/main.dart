@@ -3,182 +3,180 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
-    return Mystate();
     // TODO: implement createState
+
+    return MyState();
   }
 }
 
-class Mystate extends State {
-  var _formkey = GlobalKey<FormState>();
-
-  var _currencies = ['Rupees', 'Dollars', 'Pounds'];
-  var _currentItemSelected = '';
-  var _displayResult = '';
-  @override
+class MyState extends State {
   void initState() {
     super.initState();
-    _currentItemSelected = _currencies[0];
   }
-  TextEditingController principalController = TextEditingController();
-  TextEditingController roiController = TextEditingController();
-  TextEditingController termController = TextEditingController();
-  String value = '';
+
+  var _formkey = GlobalKey<FormState>();
+  bool _autoValidate = false;
+  TextEditingController _principalController = TextEditingController();
+  TextEditingController _roiController = TextEditingController();
+  TextEditingController _termController = TextEditingController();
+  double _principal;
+  double _roi;
+  double _term;
+  double totalAmountPayable;
+  String result = "";
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new MaterialApp(
-      title: 'Simple Interest Calculator',
-      color: Colors.indigo,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
+      home: new Scaffold(
+        appBar: new AppBar(
           backgroundColor: Colors.indigo,
-          title: Text('Simple Interest Calculator'),
+          title: Text("Simple Interest Calculator"),
         ),
-        body: Form(
-
-          key: _formkey,
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: ListView(
-              children: <Widget>[
-                Image1(),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                  child: TextFormField(
-                    autofocus: true,
-                    keyboardType: TextInputType.number,
-                    controller: principalController,
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return "Please Enter a valid Number";
-                      }
-                    },
-                    decoration: InputDecoration(
-                      //errorText: 'Please enter a valid number',
-                      labelText: 'Principal',
-                      hintText: 'In number eg.15000',
-                      border: OutlineInputBorder(
-
-                          borderRadius: BorderRadius.circular(5.0)),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        //errorText: 'Please enter a valid number',
-                        hintText: 'In Percent',
-                        labelText: 'Rate of Interest',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),borderSide: BorderSide(color: Colors.indigo,style:BorderStyle.solid ))),
-                    controller: roiController,
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return "Please Enter a valid amount";
-                      }
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-
-                                //errorText: 'Please enter a valid number',
-                            hintText: 'In Years',
-                            labelText: 'Term',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                        controller: termController,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return "Please Enter a valid amount";
-                          }
-                        },
-                      )),
-                      Container(
-                        width: 5.0,
-                      ),
-                      Expanded(child: DropdownButton(items: _currencies.map((String value){
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(), value: _currentItemSelected,onChanged: (String newValueSelected){
-                        _onDropDownItemSelected(newValueSelected);
-                      },))
-                    ],
-                  ),
-                ),
-                Padding(padding: EdgeInsets.only(top: 30.0,bottom: 30.0),child: Text(this._displayResult,style: Theme.of(context).textTheme.body2,),),
-                Padding(
-                  padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(child: RaisedButton(textColor: Colors.white,child: Text("CALCULATE",textScaleFactor: 1.0,),onPressed: (){
-                        setState(() {
-                          if(_formkey.currentState.validate()) {
-                            this._displayResult=_calculateTotalReturns();
-                          }
-                        });
-                      },color: Colors.indigo,)),
-                      Container(
-                        width: 10.0,
-                      ),
-                      Expanded(child: RaisedButton(textColor: Colors.white,child: Text("RESET",textScaleFactor: 1.0,),onPressed: (){
-                        setState(() {
-                          _reset();
-                        });
-                      },color: Colors.pinkAccent))
-
-                    ],
-                  ),
-                ),
-
-              ],
-            ),
+        body: new SingleChildScrollView(
+          child: new Container(
+            margin: new EdgeInsets.all(15.0),
+            child: new Form(
+                key: _formkey, autovalidate: _autoValidate, child: FormUI()),
           ),
-          
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
-  String _calculateTotalReturns() {
-    double principal = double.parse(principalController.text);
-    double roi = double.parse(roiController.text);
-    double term = double.parse(termController.text);
 
-    double totalAmountPayable = principal + (principal * roi * term) / 100;
+  Widget FormUI() {
+    return new Column(
+      children: <Widget>[
+        Image1(),
+        new Padding(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: TextFormField(
+              validator: (String arg) {
+                if (arg.isEmpty) {
+                  return 'Enter a valid number';
+                } else {
+                  return null;
+                }
+              },
+              controller: _principalController,
+              decoration: InputDecoration(
+                  labelText: "Principal",
+                  labelStyle: TextStyle(color: Colors.indigo),
+                  hintText: 'eg.12000',
+                  prefixIcon:
+                      const Icon(Icons.attach_money, color: Colors.pinkAccent),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.indigo))),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+            )),
+        new Padding(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: TextFormField(
+              validator: (String arg) {
+                if (arg.isEmpty) {
+                  return 'Enter a valid number';
+                } else {
+                  return null;
+                }
+              },
+              controller: _roiController,
+              decoration: InputDecoration(
+                  labelText: "Rate of Interest",
+                  labelStyle: TextStyle(color: Colors.indigo),
+                  hintText: 'eg.2 years',
+                  prefixIcon: const Icon(
+                    Icons.show_chart,
+                    color: Colors.pinkAccent,
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0))),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+            )),
+        new Padding(
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: TextFormField(
+              validator: (String arg) {
+                if (arg.isEmpty) {
+                  return 'Enter a valid number';
+                } else {
+                  return null;
+                }
+              },
+              controller: _termController,
+              decoration: InputDecoration(
+                  labelText: "Term",
+                  labelStyle: TextStyle(color: Colors.indigo),
+                  prefixIcon: const Icon(
+                    Icons.access_time,
+                    color: Colors.pinkAccent,
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0))),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+            )),
+        Padding(
+            padding: EdgeInsets.all(20.0),
+            child: new Row(
+              children: <Widget>[
+                new Container(
+                    height: 40.0,
+                    width: 120.0,
+                    child: new RaisedButton(
+                        onPressed: () {
+                          _principal = double.parse(_principalController.text);
+                          _roi = double.parse(_roiController.text);
+                          _term = double.parse(_termController.text);
+                          setState(() {
+                            if (_formkey.currentState.validate()) {
+                              this.result = _result();
+                            }
+                            totalAmountPayable = _principal + (_principal * _roi * _term) / 100;
+                          });
+                        },
+                        color: Colors.indigo,
+                        elevation: 5.0,
+                        child: new Text(
+                          "CALCULATE",
+                          style: TextStyle(color: Colors.white),
+                        ))),
+                new Container(width: 50.0),
+                new Container(
+                    height: 40.0,
+                    width: 120.0,
+                    child: new RaisedButton(
+                        onPressed: () {
+                          setState(() {
+                            _principalController.text = '';
+                            _termController.text = '';
+                            _roiController.text = '';
+                            result = "";
+                          });
+                        },
+                        color: Colors.pink,
+                        elevation: 5.0,
+                        child: new Text(
+                          "RESET",
+                          style: TextStyle(color: Colors.white),
+                        ))),
+              ],
+            )),
+        new Text(this.result, style: Theme.of(context).textTheme.body2),
+      ],
+    );
+  }
 
-    String result =
-        'After $term years, your investment will be worth $totalAmountPayable $_currentItemSelected';
+  String _result() {
+    result =
+        "After $_term years, your investment will be worth $totalAmountPayable rupees";
     return result;
   }
-  void _reset() {
-    principalController.text = '';
-    roiController.text = '';
-    termController.text = '';
-    _displayResult = '';
-    _currentItemSelected = _currencies[0];
-  }
-  void _onDropDownItemSelected(String newValueSelected) {
-    setState(() {
-      this._currentItemSelected = newValueSelected;
-    });
-  }
-
 }
-
 
 class Image1 extends StatelessWidget {
   @override
@@ -196,6 +194,5 @@ class Image1 extends StatelessWidget {
       height: 150.0,
       child: image,
     );
-
   }
 }
