@@ -17,22 +17,19 @@ class MyState extends State {
   void initState() {
     super.initState();
   }
-
+  var _displayResult = '';
   var _formkey = GlobalKey<FormState>();
   bool _autoValidate = false;
   TextEditingController _principalController = TextEditingController();
   TextEditingController _roiController = TextEditingController();
   TextEditingController _termController = TextEditingController();
-  double _principal;
-  double _roi;
-  double _term;
-  double totalAmountPayable;
-  String result = "";
-
+  String value = '';
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return new MaterialApp(
+      title: 'Simple Interest Calculator',
       color: Colors.indigo,
       home: new Scaffold(
         appBar: new AppBar(
@@ -43,7 +40,7 @@ class MyState extends State {
           child: new Container(
             margin: new EdgeInsets.all(15.0),
             child: new Form(
-                key: _formkey, autovalidate: _autoValidate, child: FormUI()),
+                key: _formkey, autovalidate: _autoValidate, child: formUI()),
           ),
         ),
       ),
@@ -51,18 +48,16 @@ class MyState extends State {
     );
   }
 
-  Widget FormUI() {
+  Widget formUI() {
     return new Column(
       children: <Widget>[
         Image1(),
         new Padding(
             padding: EdgeInsets.only(bottom: 20.0),
             child: TextFormField(
-              validator: (String arg) {
-                if (arg.isEmpty) {
-                  return 'Enter a valid number';
-                } else {
-                  return null;
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return 'Please Enter a valid number';
                 }
               },
               controller: _principalController,
@@ -71,8 +66,9 @@ class MyState extends State {
                   labelStyle: TextStyle(color: Colors.indigo),
                   hintText: 'eg.12000',
                   prefixIcon:
-                      const Icon(Icons.attach_money, color: Colors.pinkAccent),
+                  const Icon(Icons.attach_money, color: Colors.pinkAccent),
                   border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
                       borderSide: BorderSide(color: Colors.indigo))),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
             )),
@@ -82,8 +78,6 @@ class MyState extends State {
               validator: (String arg) {
                 if (arg.isEmpty) {
                   return 'Enter a valid number';
-                } else {
-                  return null;
                 }
               },
               controller: _roiController,
@@ -105,8 +99,6 @@ class MyState extends State {
               validator: (String arg) {
                 if (arg.isEmpty) {
                   return 'Enter a valid number';
-                } else {
-                  return null;
                 }
               },
               controller: _termController,
@@ -130,21 +122,17 @@ class MyState extends State {
                     width: 120.0,
                     child: new RaisedButton(
                         onPressed: () {
-                          _principal = double.parse(_principalController.text);
-                          _roi = double.parse(_roiController.text);
-                          _term = double.parse(_termController.text);
                           setState(() {
                             if (_formkey.currentState.validate()) {
-                              this.result = _result();
+                              this._displayResult = _calculateTotalReturns();
                             }
-                            totalAmountPayable = _principal + (_principal * _roi * _term) / 100;
+
                           });
                         },
                         color: Colors.indigo,
                         elevation: 5.0,
                         child: new Text(
-                          "CALCULATE",
-                          style: TextStyle(color: Colors.white),
+                          "CALCULATE",style: TextStyle(color: Colors.white),
                         ))),
                 new Container(width: 50.0),
                 new Container(
@@ -153,10 +141,7 @@ class MyState extends State {
                     child: new RaisedButton(
                         onPressed: () {
                           setState(() {
-                            _principalController.text = '';
-                            _termController.text = '';
-                            _roiController.text = '';
-                            result = "";
+                            _reset();
                           });
                         },
                         color: Colors.pink,
@@ -167,18 +152,30 @@ class MyState extends State {
                         ))),
               ],
             )),
-        new Text(this.result, style: Theme.of(context).textTheme.body2),
+        new Text(this._displayResult, style: Theme.of(context).textTheme.body2),
       ],
     );
   }
+  String _calculateTotalReturns() {
+    double principal = double.parse(_principalController.text);
+    double roi = double.parse(_roiController.text);
+    double term = double.parse(_termController.text);
 
-  String _result() {
-    result =
-        "After $_term years, your investment will be worth $totalAmountPayable rupees";
+    double totalAmountPayable = principal + (principal * roi * term) / 100;
+
+    String result =
+        'After $term years, your investment will be worth $totalAmountPayable';
     return result;
   }
-}
+  void _reset() {
+    _principalController.text = '';
+    _roiController.text = '';
+    _termController.text = '';
+    _displayResult = '';
+    //_currentItemSelected = _currencies[0];
+  }
 
+}
 class Image1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -195,5 +192,7 @@ class Image1 extends StatelessWidget {
       height: 150.0,
       child: image,
     );
+
   }
 }
+
