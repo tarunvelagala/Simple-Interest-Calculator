@@ -33,6 +33,7 @@ class MyState extends State {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new MaterialApp(
+      color: Colors.indigo,
       home: new Scaffold(
         appBar: new AppBar(
           backgroundColor: Colors.indigo,

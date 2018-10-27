@@ -23,7 +23,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: "^0.6.1"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -38,8 +38,17 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/icons8-bank-96.png
     - images/percentage.png
+
+
+
+flutter_icons:
+  image_path: "images/web_hi_res_512.png"
+  android: true
+  ios: true
+  image_path_ios: "images/web_hi_res_512.png"
+  image_path_android: "images/ic_launcher.png"
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
