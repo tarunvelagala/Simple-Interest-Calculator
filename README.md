@@ -21,7 +21,8 @@ These instructions will get you a copy of the project up and running on your loc
 ![screenshot2_updated](https://user-images.githubusercontent.com/34186129/47607494-509b9080-da3e-11e8-8c6a-cb41450854b2.jpg)
 
 
+![screenshot1_updated](https://user-images.githubusercontent.com/34186129/47607506-82acf280-da3e-11e8-840d-42996c553f1b.jpg)
 
-![screenshot_2_resized](https://user-images.githubusercontent.com/34186129/47522486-53b64580-d8b3-11e8-9fbe-390c20653480.jpg)
+
 ## Credits 
 Thank You .... [Smartherd](https://www.smartherd.com/) 
