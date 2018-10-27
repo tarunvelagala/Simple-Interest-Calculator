@@ -120,12 +120,12 @@ class Mystate extends State {
                     ],
                   ),
                 ),
-                
+                Padding(padding: EdgeInsets.only(top: 30.0,bottom: 30.0),child: Text(this._displayResult,style: Theme.of(context).textTheme.body2,),),
                 Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                   child: Row(
                     children: <Widget>[
-                      Expanded(child: RaisedButton(textColor: Colors.white,child: Text("Calculate",textScaleFactor: 1.5,),onPressed: (){
+                      Expanded(child: RaisedButton(textColor: Colors.white,child: Text("CALCULATE",textScaleFactor: 1.0,),onPressed: (){
                         setState(() {
                           if(_formkey.currentState.validate()) {
                             this._displayResult=_calculateTotalReturns();
@@ -135,7 +135,7 @@ class Mystate extends State {
                       Container(
                         width: 10.0,
                       ),
-                      Expanded(child: RaisedButton(textColor: Colors.white,child: Text("Reset",textScaleFactor: 1.5,),onPressed: (){
+                      Expanded(child: RaisedButton(textColor: Colors.white,child: Text("RESET",textScaleFactor: 1.0,),onPressed: (){
                         setState(() {
                           _reset();
                         });
