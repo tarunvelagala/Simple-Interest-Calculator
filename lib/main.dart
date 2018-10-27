@@ -144,7 +144,7 @@ class Mystate extends State {
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: 5.0,bottom: 5.0),child: Text(this._displayResult,style: Theme.of(context).textTheme.body2,),)
+
               ],
             ),
           ),
