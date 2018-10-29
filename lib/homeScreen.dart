@@ -61,6 +61,7 @@ class MyState extends State {
               },
               controller: _principalController,
               decoration: InputDecoration(
+                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 20.0), onPressed: (){_principalController.clear();}),
                   labelText: "Principal",
                   labelStyle: TextStyle(color: Colors.indigo),
                   hintText: 'eg.12000',
@@ -88,6 +89,7 @@ class MyState extends State {
                     Icons.show_chart,
                     color: Colors.pinkAccent,
                   ),
+                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 20.0,), onPressed: (){_roiController.clear();}),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0))),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -102,6 +104,7 @@ class MyState extends State {
               },
               controller: _termController,
               decoration: InputDecoration(
+                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 20.0), onPressed: (){_termController.clear();}),
                   labelText: "Term",
                   labelStyle: TextStyle(color: Colors.indigo),
                   prefixIcon: const Icon(
