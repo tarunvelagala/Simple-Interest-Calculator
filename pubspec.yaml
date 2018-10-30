@@ -42,6 +42,7 @@ flutter:
 
 
 
+
 flutter_icons:
   image_path: "images/web_hi_res_512.png"
   android: true

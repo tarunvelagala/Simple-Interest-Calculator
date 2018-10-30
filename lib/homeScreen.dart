@@ -11,6 +11,15 @@ class MyApp extends StatefulWidget {
   }
 }
 
+ThemeData buildTheme() {
+  final ThemeData base = ThemeData();
+  return base.copyWith(
+    hintColor: Colors.indigo,
+    errorColor: Colors.pinkAccent
+
+
+  );
+}
 class MyState extends State {
   void initState() {
     super.initState();
@@ -27,7 +36,7 @@ class MyState extends State {
 
     // TODO: implement build
     return new MaterialApp(
-
+      theme: buildTheme(),
       title: 'Simple Interest Calculator',
       color: Colors.indigo,
       home: new Scaffold(
@@ -54,6 +63,7 @@ class MyState extends State {
         new Padding(
             padding: EdgeInsets.only(bottom: 20.0),
             child: TextFormField(
+              autofocus: true,
               validator: (String value) {
                 if (value.isEmpty) {
                   return 'Please Enter a valid number';
@@ -61,7 +71,7 @@ class MyState extends State {
               },
               controller: _principalController,
               decoration: InputDecoration(
-                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 20.0), onPressed: (){_principalController.clear();}),
+                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 15.0), onPressed: (){_principalController.clear();}),
                   labelText: "Principal",
                   labelStyle: TextStyle(color: Colors.indigo),
                   hintText: 'eg.12000',
@@ -73,7 +83,7 @@ class MyState extends State {
               keyboardType: TextInputType.numberWithOptions(decimal: true),
             )),
         new Padding(
-            padding: EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 30.0),
             child: TextFormField(
               validator: (String arg) {
                 if (arg.isEmpty) {
@@ -89,13 +99,14 @@ class MyState extends State {
                     Icons.show_chart,
                     color: Colors.pinkAccent,
                   ),
-                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 20.0,), onPressed: (){_roiController.clear();}),
+                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 15.0,), onPressed: (){_roiController.clear();}),
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0))),
+
+                      borderRadius: BorderRadius.circular(5.0),)),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
             )),
         new Padding(
-            padding: EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 30.0),
             child: TextFormField(
               validator: (String arg) {
                 if (arg.isEmpty) {
@@ -104,7 +115,7 @@ class MyState extends State {
               },
               controller: _termController,
               decoration: InputDecoration(
-                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 20.0), onPressed: (){_termController.clear();}),
+                  suffixIcon: IconButton(icon: Icon(Icons.clear,color: Colors.pinkAccent,size: 15.0), onPressed: (){_termController.clear();}),
                   labelText: "Term",
                   labelStyle: TextStyle(color: Colors.indigo),
                   prefixIcon: const Icon(
@@ -174,6 +185,7 @@ class MyState extends State {
     _roiController.text = '';
     _termController.text = '';
     _displayResult = '';
+
     //_currentItemSelected = _currencies[0];
   }
 
@@ -191,7 +203,7 @@ class Image1 extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
       width: 80.0,
-      height: 150.0,
+      height: 120.0,
       child: image,
     );
 
