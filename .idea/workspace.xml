@@ -11,8 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="67642d8e-2cf4-4943-bd26-7262ee96fd54" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/app.dill.incremental.dill" afterPath="$PROJECT_DIR$/build/app.dill.incremental.dill" />
       <change beforePath="$PROJECT_DIR$/lib/homeScreen.dart" afterPath="$PROJECT_DIR$/lib/homeScreen.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" afterPath="$PROJECT_DIR$/lib/main.dart" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -30,8 +30,8 @@
       <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+            <state relative-caret-position="42">
+              <caret line="47" column="140" lean-forward="true" selection-start-line="47" selection-start-column="140" selection-end-line="47" selection-end-column="140" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -42,8 +42,8 @@
       <file leaf-file-name="homeScreen.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/homeScreen.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="82">
+              <caret line="64" column="33" lean-forward="true" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -69,6 +69,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -352,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540893164843</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Splash Screen Animations Added">
+      <created>1540893565200</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1540893565200</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -882,8 +890,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        <state relative-caret-position="42">
+          <caret line="47" column="140" lean-forward="true" selection-start-line="47" selection-start-column="140" selection-end-line="47" selection-end-column="140" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
@@ -892,8 +900,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/homeScreen.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="82">
+          <caret line="64" column="33" lean-forward="true" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
           <folding />
         </state>
       </provider>

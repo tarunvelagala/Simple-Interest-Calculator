@@ -61,7 +61,7 @@ class MyState extends State {
       children: <Widget>[
         Image1(),
         new Padding(
-            padding: EdgeInsets.only(bottom: 20.0),
+            padding: EdgeInsets.only(bottom: 30.0),
             child: TextFormField(
               autofocus: true,
               validator: (String value) {
@@ -126,6 +126,7 @@ class MyState extends State {
                       borderRadius: BorderRadius.circular(5.0))),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
             )),
+       Padding(child: new Text(this._displayResult, style: Theme.of(context).textTheme.body2),padding: EdgeInsets.all(20.0),),
         Padding(
             padding: EdgeInsets.all(20.0),
             child: new Row(
@@ -162,10 +163,11 @@ class MyState extends State {
                         child: new Text(
                           "RESET",
                           style: TextStyle(color: Colors.white),
+
                         ))),
               ],
             )),
-        new Text(this._displayResult, style: Theme.of(context).textTheme.body2),
+
       ],
     );
   }

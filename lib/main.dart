@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
           body: Center(
               child: SafeArea(child: Column(mainAxisAlignment: MainAxisAlignment.start,children: <Widget>[
                 Padding(padding: EdgeInsets.only(top:150.0),child: CircleAvatar(child: image,radius: 50.0,backgroundColor: Colors.white,),),
-                Padding(padding: EdgeInsets.all(30.0),child:Center(child: Column(children: <Widget>[Text("SIMPLE INTEREST \n CALCULATOR",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),)],) ,),),
+                Padding(padding: EdgeInsets.all(30.0),child:Center(child: Column(children: <Widget>[Text("SIMPLE INTEREST",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold)),Text("CALCULATOR",style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold))],) ,),),
                 Expanded(child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
