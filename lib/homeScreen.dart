@@ -15,7 +15,7 @@ ThemeData buildTheme() {
   final ThemeData base = ThemeData();
   return base.copyWith(
     hintColor: Colors.indigo,
-    errorColor: Colors.pinkAccent
+
 
 
   );
